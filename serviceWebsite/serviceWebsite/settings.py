@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'account.apps.AccountConfig',
     # 'account',
     'service.apps.ServiceConfig',
+    'cart',
 ]
 
 MIDDLEWARE = [

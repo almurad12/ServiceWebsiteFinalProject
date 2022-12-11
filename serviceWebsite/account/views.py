@@ -4,9 +4,12 @@ from .forms import SignUpForm, LoginForm
 from django.contrib.auth import authenticate, login,logout
 from .models import User
 from account import views
-
+from cart.models import Cart
 ## call service model
 from service.models import Sheba
+from django.db.models import Count
+from account.models import User
+from django.db.models import Q
 # Create your views here.
 # from .urls import views
 
@@ -20,6 +23,18 @@ def sellerdashboard(request):
 def buyerdashboard(request):
     context={}
     context["servicedataset"] = Sheba.objects.all()
+    # context["cartcount"]= Cart.objects.annotate(cart_count=Count('user_id'))
+    # # print(context["cartcount"][0])
+    # context["cartcount"]= Cart.objects.get(user_id=request.user.id).count()
+    # context["cartcount"]= Cart.objects.annotate(
+    #     carts=Count('user_id', filter=Q(user_id=request.user.id))
+    # ).all()
+    carts =  Cart.objects.filter(user_id = request.user.id)
+    context['cartcount']= len(carts)
+    # for cart in carts:
+    #     context['cartcount'] += 1
+    # print( context["cartcount"])
+    # context["cartcount"]= Cart.objects.get()
     return render(request,'7BuyerServicepage.html',context)
 
 

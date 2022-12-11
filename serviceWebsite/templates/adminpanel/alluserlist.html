@@ -1,0 +1,39 @@
+{% extends "adminpanel/baseAdminDashboard.html" %}
+
+{% block content %}
+
+<h3>All user list</h3>
+<input id="myInput" type="text" placeholder="Search..">
+<br><br>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">User Id</th>
+      <th scope="col">User Name</th>
+      <th scope="col">Email</th>
+      
+    </tr>
+  </thead>
+  <tbody id="myTable">
+    <tr>
+      <td>1</td>
+      <td>Jack</td>
+      <td>Otto</td>
+      <td>
+        <button class="btn btn-danger">Delete</button>
+      </td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Jack</td>
+      <td>Otto</td>
+      <td>
+        <button class="btn btn-danger">Delete</button>
+      </td>
+    </tr>
+
+   
+  </tbody>
+</table>
+
+{% endblock %}
