@@ -40,7 +40,11 @@ INSTALLED_APPS = [
     'account.apps.AccountConfig',
     # 'account',
     'service.apps.ServiceConfig',
-    'cart',
+    'cart.apps.CartConfig',
+    'cartanother.apps.CartanotherConfig',
+    # 'cart',
+    'customAdminPanel',
+
 ]
 
 MIDDLEWARE = [

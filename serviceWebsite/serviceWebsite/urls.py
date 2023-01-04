@@ -16,10 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from cart import urls
+from cartanother import urls
 urlpatterns = [
     path('admin/', admin.site.urls),
-     path('account/', include('account.urls')),
-     path('service/', include('service.urls')),
-     path('cart/',include('cart.urls')),
+    path('account/', include('account.urls')),
+    path('service/', include('service.urls')),
+    #  path('cart/',include('cart.urls')),
+    path('cart/',include('cartanother.urls')),
     #  path('serviceshowbuyer', include('serviceshowbuyer')),
+     path('customadmin/',include('customAdminPanel.urls')),
 ]

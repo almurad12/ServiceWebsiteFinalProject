@@ -1,7 +1,9 @@
 from django.urls import path,include
-from cart import views
+# from cart import views
+from cartanother import views
 urlpatterns = [
-    # path('addtocart', views.add_to_cart),
+    path('addtocart', views.add_to_cart),
+    path('cartitemdelete/<int:id>', views.cartItemDelete),
     ###working on dashboard
     # path('newadminpanel', views.newadminpanel,name='dashboard'),
     # path('servicelist', views.servicelist,name='servicelist'),

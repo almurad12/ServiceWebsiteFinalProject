@@ -1,12 +1,15 @@
 from multiprocessing import context
 from django.shortcuts import render, redirect
+from django.http import JsonResponse
 from .forms import SignUpForm, LoginForm
 from django.contrib.auth import authenticate, login,logout
 from .models import User
 from account import views
-from cart.models import Cart
+# from cart.models import Cart
+from cartanother.models import Cartanother
 ## call service model
 from service.models import Sheba
+from  cartanother.models import Cartanother
 from django.db.models import Count
 from account.models import User
 from django.db.models import Q
@@ -29,13 +32,21 @@ def buyerdashboard(request):
     # context["cartcount"]= Cart.objects.annotate(
     #     carts=Count('user_id', filter=Q(user_id=request.user.id))
     # ).all()
-    carts =  Cart.objects.filter(user_id = request.user.id)
+    # carts =  Cart.objects.filter(user_id = request.user.id)
+    carts = Cartanother.objects.filter(user_id = request.user.id)
     context['cartcount']= len(carts)
+    context['cartvalue']=carts
+    context['addtocart']=Cartanother.objects.all()
+
+    # data = Cart.objects.filter(user_id = request.user.id).select_related('service')
+    # print(data[0].service)
+    # return JsonResponse(list(data.values()),safe=False)
     # for cart in carts:
     #     context['cartcount'] += 1
     # print( context["cartcount"])
     # context["cartcount"]= Cart.objects.get()
     return render(request,'7BuyerServicepage.html',context)
+    # return render(request,'newindex.html',context)
 
 
 # def login_view(request):

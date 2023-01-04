@@ -3,6 +3,7 @@ from django.shortcuts import render,HttpResponseRedirect,redirect
 from account.models import User
 from service.models import Sheba
 from cart.models import Cart
+from cartanother.models import Cartanother
 from django.http import JsonResponse
 # Create your views here.
 
@@ -19,8 +20,8 @@ def add_to_cart(request):
         # service_price = Sheba.objects.get(serviceprice=request.GET['serviceprice'])
         print(serviceprice,servicetitle)
 
-        cart = Cart(user=user_id,service=service_id)
-        # cart = Cart(user=user_id,service=service_id,servicetitle=servicetitle,serviceprice=serviceprice)
+        # cart = Cart(user=user_id,service=service_id)
+        cart = Cartanother(user=user_id,service=service_id,servicetitle=servicetitle,serviceprice=serviceprice)
         cart.save()
         # return redirect('serviceshow')
         return redirect('buyerdashboard')
@@ -39,3 +40,10 @@ def add_to_cart(request):
 
 # def alluserlist(request):
 #     return render(request,'adminpanel/alluserlist.html')
+
+def cartItemDelete(request,id):
+    if request.method =='GET':
+        data_id =  Cartanother.objects.get(id=id) 
+        data_id.delete()
+        print(data_id)
+    return redirect('buyerdashboard')
