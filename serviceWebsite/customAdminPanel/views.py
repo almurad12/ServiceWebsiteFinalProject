@@ -4,6 +4,8 @@ from django.shortcuts import render,HttpResponseRedirect,redirect
 from  django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login
 from django.contrib import messages
+from account.models import User
+from .forms import UserForm
 
 # def adminlogin(request):
 #     try:
@@ -30,10 +32,22 @@ from django.contrib import messages
     # return redirect('')
 
 def newadminpanel(request):
-    return render(request,'adminpanel/cartDashboard.html')
+    context ={}
+    form = UserForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+    context['form']= form
+    return render(request,'adminpanel/cartDashboard.html',context)
+    #  return render(request,'adminpanel/cartDashboard.html')
 
-def servicelist(request):
-    return render(request,'adminpanel/allservicelist.html')
+def userlist(request):
+    context ={}
+    form = UserForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+    context['form']= form
+    context['alluserlist']= User.objects.all()
+    return render(request,'adminpanel/allservicelist.html',context)
 
 def alluserlist(request):
     return render(request,'adminpanel/alluserlist.html')

@@ -3,6 +3,6 @@ from customAdminPanel import views
 urlpatterns = [
     ###working on dashboard
     path('newadminpanel', views.newadminpanel,name='dashboard'),
-    path('servicelist', views.servicelist,name='servicelist'),
+    path('servicelist', views.userlist,name='servicelist'),
     path('alluserlist', views.alluserlist,name='userlist'),
 ]

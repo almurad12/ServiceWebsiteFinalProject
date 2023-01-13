@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'cartanother.apps.CartanotherConfig',
     # 'cart',
     'customAdminPanel',
+    'crispy_forms',
 
 ]
 
@@ -131,3 +132,5 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'account.User'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

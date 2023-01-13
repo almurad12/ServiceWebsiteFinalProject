@@ -10,9 +10,12 @@ from cartanother.models import Cartanother
 ## call service model
 from service.models import Sheba
 from  cartanother.models import Cartanother
+from  cartanother.models import Cartanothernew
 from django.db.models import Count
 from account.models import User
 from django.db.models import Q
+from cartanother.models import Order
+from cartanother.models import Ordernew
 # Create your views here.
 # from .urls import views
 
@@ -20,8 +23,15 @@ from django.db.models import Q
 def home(request):
     return render(request,'buyinguserpage1.html')
 
+###seller dashboard page
 def sellerdashboard(request):
     return render(request,'4sellerdashboard.html')
+
+###seller pending order page
+def sellerpendingorder(request):
+    context={}
+    context['sellerpendingorder']=Ordernew.objects.filter(serviceuserid=request.user.id)
+    return render(request,'service/sellerpendingorder.html',context)
 
 def buyerdashboard(request):
     context={}
@@ -33,10 +43,12 @@ def buyerdashboard(request):
     #     carts=Count('user_id', filter=Q(user_id=request.user.id))
     # ).all()
     # carts =  Cart.objects.filter(user_id = request.user.id)
-    carts = Cartanother.objects.filter(user_id = request.user.id)
+    # carts = Cartanother.objects.filter(user_id = request.user.id)
+    carts = Cartanothernew.objects.filter(user_id = request.user.id)
     context['cartcount']= len(carts)
     context['cartvalue']=carts
-    context['addtocart']=Cartanother.objects.all()
+    # context['addtocart']=Cartanother.objects.all()
+    context['addtocart']=Cartanothernew.objects.all()
 
     # data = Cart.objects.filter(user_id = request.user.id).select_related('service')
     # print(data[0].service)
@@ -120,3 +132,13 @@ def customer(request):
 def employee(request):
     return render(request,'employee.html')
 
+def buyerorder(request):
+    context={}
+    context['createdorder'] = Ordernew.objects.filter(userid = request.user.id)
+    return render(request,'buyerorderpage.html',context)
+
+def cancelorder(request,id):
+    # return render (request,'buyerorderpage.html')
+    deleteorder = Ordernew.objects.filter(id = id)
+    deleteorder.delete()
+    return redirect('/account/buyerorder/')
