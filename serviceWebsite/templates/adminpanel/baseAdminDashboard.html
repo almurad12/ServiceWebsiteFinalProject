@@ -211,14 +211,22 @@ a.article:hover {
             <a href="{% url 'dashboard' %}">Dashboard</a>
           </li>
           <li>
-            <a href="{% url 'servicelist' %}">user list</a>
+            <a href="{% url 'userlist' %}">user list</a>
+          </li>
+           <li>
+            <a href="{% url 'allservicelist' %}">All service list</a>
           </li>
           <li>
-            <a href="{% url 'userlist' %}">User list</a>
+            <a href="{% url 'allpendingorderlist' %}">Pending Order</a>
           </li>
           <li>
+            <a href="{% url 'allorderlist' %}">Order list</a>
+          </li>
+          
+
+          <!-- <li>
             <a href="#">Order list</a>
-          </li>
+          </li> -->
           <!-- <li class="active">
             <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Home </a>
             <ul class="collapse list-unstyled" id="homeSubmenu" >
@@ -256,7 +264,7 @@ a.article:hover {
                                     <span>Toggle Sidebar</span>
                                 </button>
           <div class="container-fluid">
-        <h2>Welcome To Dashboard</h2>
+        <h2>Dashboard</h2>
 
         {% block content %}
         {% endblock %}

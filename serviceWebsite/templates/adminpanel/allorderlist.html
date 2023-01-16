@@ -3,11 +3,12 @@
 
 {% block content %}
 {% load crispy_forms_tags %}
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+<h3>All Order List</h3>
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
     Add User
   </button>
   <input id="myInput" type="text" placeholder="Search..">
-  <br><br>
+  <br><br> -->
   
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -141,31 +142,44 @@
               <thead>
                 <tr>
                   <!-- <th scope="col">User id </th> -->
-                  <th scope="col">Service title</th>
-                  <th scope="col">Service details</th>
-                  <th scope="col">price</th>
-                  <th scope="col">location</th>
-                  <th scope="col">Service Created id</th>
-                  <!-- <th scope="col">Service id</th> -->
-                  <th scope="col">Category</th>
+                  <!-- <th scope="col">User id</th> -->
+                  <th scope="col">servicetitle</th>
+                  <th scope="col">serviceprice</th>
+                  <th scope="col">service Date</th>
+                  <th scope="col">Order Address</th>
+                  <th scope="col">Order phone no</th>
+                  <th scope="col">User Id</th>
+                  <th scope="col">Service Id</th>
+                  <!-- <th scope="col">User id</th> -->
                   <th scope="col">Action</th>
                   
                 </tr>
               </thead>
               <tbody id="myTable">
-                {% for data in  allservicelist %}
+                <!-- {{allpendingorder}} -->
+                {% for data in  allorderlist %}
+                
+                    <!-- {% csrf_token %} -->
                 <tr>
                   <!-- <td>{{data.id}}</td> -->
-                  <td>{{data.servicetitle}}</td>
-                  <td>{{data.servicedetails}}</td>
-                  <td>{{data.serviceprice}}</td>
-                  <td>{{data.servicelocation}}</td>
-                  <td>{{data.user_id}}</td>
-                  <!-- <td>{{data.id}}</td> -->
-                  <td>{{data.servicecategory}}</td>
+                  <td>{{data.orderservicetitle}}</td>
+                  <td>{{data.orderserviceprice}}</td>
+                  <td>{{data.orderdate}}</td>
+                  <td>{{data.orderaddress}}</td>
+                  <td>{{data.orderphoneno}}</td>
+                  <td>{{data.userid}}</td>
+                  <td>{{data.serviceid}}</td>
+                 
+                  <!-- <td>{{data.service_id}}</td>
+                  <td>{{data.user_id}}</td> -->
+                  <!-- <td>{{data.is_buyer}}</td>
+                  <td>{{data.is_seller}}</td> -->
                   <!-- <td><Button class="btn btn-danger btn-sm">Delete user</Button></td> -->
                   <!-- <td><ahref class="btn btn-danger btn-sm">Delete user</a></td> -->
-                    <td><a href="allservicelist/delete?id={{data.id}}" class="btn btn-danger">Delete Service</a></td>
+                    <td>
+                        <a href="allorderlist/delete?orderid={{data.id}}" class="btn btn-danger">order delete</a>
+                    </td>
+
                     <!-- <td><a href="/admin/account/user/{{data.id}}/delete" class="btn btn-danger">Delete User</a></td> -->
                     <!-- admin/account/user/{{data.id}}/delete -->
 
